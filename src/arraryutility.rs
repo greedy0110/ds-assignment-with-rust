@@ -41,15 +41,16 @@ pub fn findminpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
 pub fn findmaxpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     assert!(!v.is_empty());
 
-    let mut maxindex = 0;
-    let mut max = v[0];
-    for (index, value) in v[i..j].iter().enumerate() {
-        if *value > max {
-            max = *value;
+    let mut maxindex = i;
+    let mut max = v[i];
+    for index in i..j {
+        let value = v[index];
+        if value > max {
+            max = value;
             maxindex = index;
         }
     }
-    i + maxindex
+    maxindex
 }
 
 pub fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
@@ -268,6 +269,8 @@ mod tests {
         let a = vec![1, 5, 3, 7, 3];
         assert_eq!(findmaxpos(&a, 0, 3), 1);
         assert_eq!(findmaxpos(&a, 2, 5), 3);
+        let a = vec![5,1,2,3,4];
+        assert_eq!(findmaxpos(&a, 1, 5), 4);
     }
 
     #[test]
