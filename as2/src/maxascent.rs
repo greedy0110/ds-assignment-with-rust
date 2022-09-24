@@ -1,5 +1,27 @@
 pub fn maxascent(a: &Vec<i32>) -> usize {
-    a.len()
+    if a.is_empty() { return 0; }
+
+    let mut cur = 1usize;
+    let mut max = 1usize;
+
+    for i in 1..a.len() {
+        if a[i - 1] > a[i] {
+            // register
+            if cur > max {
+                max = cur;
+            }
+            cur = 1;
+        } else {
+            cur = cur + 1;
+        }
+    }
+
+    // register
+    if cur > max {
+        max = cur;
+    }
+
+    max
 }
 
 #[cfg(test)]
@@ -25,5 +47,10 @@ mod tests {
     fn test03() {
         assert_eq!(maxascent(&vec![2, 3, 4, 3, 2, 1, 2, 1]), 3);
         assert_eq!(maxascent(&vec![2, 3, 4, 3, 2, 1, 2, 1, 2, 3, 4]), 4);
+    }
+
+    #[test]
+    fn test04() {
+        assert_eq!(maxascent(&vec![2, 2, 2]), 3);
     }
 }
