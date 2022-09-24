@@ -3,7 +3,7 @@ type Matrix = Vec<Vec<f64>>;
 /// ps[i] => [0, i) 까지의 합
 /// ps[0] => 아무것도 더하지 않은 값
 /// a [i,j) 범위 합은? ps[j] - ps[i]로 구할 수 있음
-fn particial_sum(a: &Vec<f64>) -> Vec<f64> {
+fn partial_sum(a: &Vec<f64>) -> Vec<f64> {
     let n = a.len();
     let mut ps = Vec::with_capacity(n + 1);
     ps.push(0.0);
@@ -17,7 +17,7 @@ fn particial_sum(a: &Vec<f64>) -> Vec<f64> {
 pub fn array_of_average(a: &Vec<f64>) -> Matrix {
     let n = a.len();
     let mut matrix: Matrix = vec![vec![0.0; n]; n];
-    let ps = particial_sum(&a);
+    let ps = partial_sum(&a);
 
     for i in 0..n {
         for j in 0..n {
@@ -38,7 +38,7 @@ mod tests {
 
     #[test]
     fn test_part00() {
-        let ps = particial_sum(&vec![1.0, 2.0, 3.0]);
+        let ps = partial_sum(&vec![1.0, 2.0, 3.0]);
         assert_eq!(ps, vec![0.0, 1.0, 3.0, 6.0]);
         // [1,2) 구간합
         assert_eq!(ps[2] - ps[1], 2.0);
