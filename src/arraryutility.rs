@@ -74,8 +74,8 @@ fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
 fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
     assert!(!v.is_empty());
 
-    for k in j-1..i+1 {
-        v[k] = v[k-1];
+    for k in (i + 1..j).rev() {
+        v[k] = v[k - 1];
     }
 }
 
@@ -86,7 +86,7 @@ mod tests {
     #[test]
     fn test_shift_right() {
         let mut a = vec![1, 2, 3, 4, 5];
-        shift_right(&mut a, 1, 4);
+        shift_right(&mut a, 1, 5);
         assert_eq!(a, vec![1, 2, 2, 3, 4]);
     }
 
