@@ -87,9 +87,31 @@ fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
     }
 }
 
+use rand::{Rng, thread_rng};
+
+fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
+    let mut v = Vec::with_capacity(size);
+    let mut rng = thread_rng();
+    for i in 0..size {
+        v.push(rng.gen_range(min..max));
+    }
+    v
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_create_random_array() {
+        // random 어떻게 테스트하지?
+        let a: Vec<i32> = create_random_array(100, 1, 10);
+
+        println!("{:?}", a);
+        assert_eq!(a.len(), 100);
+        assert!(findmax(&a, 0, 100) <= 10);
+        assert!(findmin(&a, 0, 100) >= 1);
+    }
 
     #[test]
     fn test_shift_left() {
