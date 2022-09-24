@@ -55,6 +55,12 @@ fn findmaxpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
     i + maxindex
 }
 
+fn swap(a: &mut Vec<i32>, i: usize, j: usize) {
+    let temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -85,5 +91,12 @@ mod tests {
         let a = vec![1, 5, 3, 7, 5];
         assert_eq!(findminpos(&a, 0, 3), 0);
         assert_eq!(findminpos(&a, 2, 5), 2);
+    }
+
+    #[test]
+    fn test_swap() {
+        let mut a = vec![1, 5, 3, 7, 5];
+        swap(&mut a, 2, 3);
+        assert_eq!(a, vec![1,5,7,3,5]);
     }
 }
