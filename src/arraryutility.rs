@@ -35,7 +35,7 @@ fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
     min
 }
 
-fn findminpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
+fn findminpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     assert!(!v.is_empty());
 
     let mut minindex = 0;
@@ -49,7 +49,7 @@ fn findminpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
     i + minindex
 }
 
-fn findmaxpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
+fn findmaxpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     assert!(!v.is_empty());
 
     let mut maxindex = 0;
@@ -71,9 +71,24 @@ fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
     v[j] = temp;
 }
 
+fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
+    assert!(!v.is_empty());
+
+    for k in j-1..i+1 {
+        v[k] = v[k-1];
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_shift_right() {
+        let mut a = vec![1, 2, 3, 4, 5];
+        shift_right(&mut a, 1, 4);
+        assert_eq!(a, vec![1, 2, 2, 3, 4]);
+    }
 
     #[test]
     fn test_findmax() {
@@ -107,6 +122,6 @@ mod tests {
     fn test_swap() {
         let mut a = vec![1, 5, 3, 7, 5];
         swap(&mut a, 2, 3);
-        assert_eq!(a, vec![1,5,7,3,5]);
+        assert_eq!(a, vec![1, 5, 7, 3, 5]);
     }
 }
