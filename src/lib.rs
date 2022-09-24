@@ -1,5 +1,5 @@
-mod arraryutility;
-mod maxsort;
+pub mod arraryutility;
+pub mod maxsort;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right

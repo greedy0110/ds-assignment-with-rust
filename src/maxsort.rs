@@ -1,6 +1,6 @@
 use crate::arraryutility::*;
 
-fn max_sort_shift(v: &mut Vec<i32>) {
+pub fn max_sort_shift(v: &mut Vec<i32>) {
     let end = v.len();
     for left in 0..end {
         let i_max = findmaxpos(&v, left, end);
@@ -10,7 +10,7 @@ fn max_sort_shift(v: &mut Vec<i32>) {
     }
 }
 
-fn max_sort_swap(v: &mut Vec<i32>) {
+pub fn max_sort_swap(v: &mut Vec<i32>) {
     let end = v.len();
     for left in 0..end {
         let i_max = findmaxpos(&v, left, end);
