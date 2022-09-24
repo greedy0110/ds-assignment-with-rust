@@ -79,9 +79,24 @@ fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
     }
 }
 
+fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
+    assert!(!v.is_empty());
+
+    for k in i..j - 1 {
+        v[k] = v[k + 1];
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_shift_left() {
+        let mut a = vec![1, 2, 3, 4, 5];
+        shift_left(&mut a, 1, 5);
+        assert_eq!(a, vec![1, 3, 4, 5, 5]);
+    }
 
     #[test]
     fn test_shift_right() {
