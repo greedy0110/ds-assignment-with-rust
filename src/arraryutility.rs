@@ -76,7 +76,7 @@ fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
     }
 }
 
-use rand::{Rng, thread_rng};
+use rand::{thread_rng, Rng};
 
 fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
     let mut v = Vec::with_capacity(size);
@@ -98,7 +98,25 @@ fn copy_array(v: &Vec<i32>) -> Vec<i32> {
 fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     for i in 0..v.len() {
         if v[i] == value {
-            return Some(i)
+            return Some(i);
+        }
+    }
+    None
+}
+
+fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+    let mut left = 0;
+    let mut right = v.len();
+    while left < right {
+        let mid = (left + right) / 2;
+        if v[mid] < value {
+            assert!(left < mid + 1); // 범위가 줄어들 것을 가정했다는 뜻 
+            left = mid + 1;
+        } else if v[mid] > value {
+            assert!(right > mid); // 범위가 줄어들 것을 가정했다는 뜻
+            right = mid;
+        } else {
+            return Some(mid);
         }
     }
     None
@@ -107,6 +125,19 @@ fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_find_in_sorted_array() {
+        let a = vec![1, 2, 3, 4, 5];
+        assert_eq!(find_in_sorted_array(&a, 3), Some(2));
+        assert_eq!(find_in_sorted_array(&a, 6), None);
+        let a = vec![1, 2, 3, 4];
+        assert_eq!(find_in_sorted_array(&a, 2), Some(1));
+        assert_eq!(find_in_sorted_array(&a, 3), Some(2));
+        let a = vec![1];
+        assert_eq!(find_in_sorted_array(&a, 1), Some(0));
+        assert_eq!(find_in_sorted_array(&a, 2), None);
+    }
 
     #[test]
     fn test_find_in_array() {
