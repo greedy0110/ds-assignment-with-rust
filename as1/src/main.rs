@@ -1,5 +1,5 @@
 use std::time::Instant;
-use ds::{maxsort::*, arraryutility::create_random_array};
+use as1::{maxsort::*, arraryutility::create_random_array};
 
 fn main() {
     bench_maxsort(10);
