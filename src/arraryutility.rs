@@ -95,9 +95,25 @@ fn copy_array(v: &Vec<i32>) -> Vec<i32> {
     a
 }
 
+fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+    for i in 0..v.len() {
+        if v[i] == value {
+            return Some(i)
+        }
+    }
+    None
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_find_in_array() {
+        let a = vec![1, 2, 3, 4, 5];
+        assert_eq!(find_in_array(&a, 3), Some(2));
+        assert_eq!(find_in_array(&a, 6), None);
+    }
 
     #[test]
     fn test_copy_array() {
