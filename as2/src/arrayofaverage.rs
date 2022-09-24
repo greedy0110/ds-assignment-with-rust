@@ -17,6 +17,18 @@ fn particial_sum(a: &Vec<f64>) -> Vec<f64> {
 pub fn array_of_average(a: &Vec<f64>) -> Matrix {
     let n = a.len();
     let mut matrix: Matrix = vec![vec![0.0; n]; n];
+    let ps = particial_sum(&a);
+
+    for i in 0..n {
+        for j in 0..n {
+            if i > j {
+                continue;
+            }
+            let psum = ps[j + 1] - ps[i];
+            matrix[i][j] = psum / (j - i + 1) as f64;
+        }
+    }
+
     matrix
 }
 
@@ -79,8 +91,10 @@ mod tests {
             for j in 0..actual[i].len() {
                 let actual = actual[i][j];
                 let expected = expected[i][j];
-                let delta = 1e-10;
-                assert!((actual - expected).abs() <= delta);
+                // WHAT : 왜 delte 별도로 처리 안해도 해결되지?
+                // let delta = 1e-10;
+                // assert!((actual - expected).abs() <= delta);
+                assert_eq!(actual, expected);
             }
         }
     }
