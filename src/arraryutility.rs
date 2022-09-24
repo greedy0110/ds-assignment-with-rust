@@ -12,6 +12,8 @@
 // }
 
 fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
+    assert!(!v.is_empty());
+
     let mut max = v[s_index];
     for value in &v[s_index..e_index] {
         if *value > max {
@@ -22,6 +24,8 @@ fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
 }
 
 fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
+    assert!(!v.is_empty());
+
     let mut min = v[i];
     for value in &v[i..j] {
         if *value < min {
@@ -32,6 +36,8 @@ fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
 }
 
 fn findminpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
+    assert!(!v.is_empty());
+
     let mut minindex = 0;
     let mut min = v[0];
     for (index, value) in v[i..j].iter().enumerate() {
@@ -44,6 +50,8 @@ fn findminpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
 }
 
 fn findmaxpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
+    assert!(!v.is_empty());
+
     let mut maxindex = 0;
     let mut max = v[0];
     for (index, value) in v[i..j].iter().enumerate() {
@@ -55,10 +63,12 @@ fn findmaxpos(v: &Vec<i32>, i: usize, j:usize) -> usize {
     i + maxindex
 }
 
-fn swap(a: &mut Vec<i32>, i: usize, j: usize) {
-    let temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
+fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
+    assert!(!v.is_empty());
+
+    let temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
 }
 
 #[cfg(test)]
