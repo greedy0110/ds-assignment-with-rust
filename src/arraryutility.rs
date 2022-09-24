@@ -1,6 +1,6 @@
 // array가 아니고, Vec에 대한 동작들이다.
 
-fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
+pub fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
     assert!(!v.is_empty());
 
     let mut max = v[s_index];
@@ -12,7 +12,7 @@ fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
     max
 }
 
-fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
+pub fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
     assert!(!v.is_empty());
 
     let mut min = v[i];
@@ -24,7 +24,7 @@ fn findmin(v: &Vec<i32>, i: usize, j: usize) -> i32 {
     min
 }
 
-fn findminpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
+pub fn findminpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     assert!(!v.is_empty());
 
     let mut minindex = 0;
@@ -38,7 +38,7 @@ fn findminpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     i + minindex
 }
 
-fn findmaxpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
+pub fn findmaxpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     assert!(!v.is_empty());
 
     let mut maxindex = 0;
@@ -52,7 +52,7 @@ fn findmaxpos(v: &Vec<i32>, i: usize, j: usize) -> usize {
     i + maxindex
 }
 
-fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
+pub fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
     assert!(!v.is_empty());
 
     let temp = v[i];
@@ -60,7 +60,7 @@ fn swap(v: &mut Vec<i32>, i: usize, j: usize) {
     v[j] = temp;
 }
 
-fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
+pub fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
     assert!(!v.is_empty());
 
     for k in (i + 1..j).rev() {
@@ -68,7 +68,7 @@ fn shift_right(v: &mut Vec<i32>, i: usize, j: usize) {
     }
 }
 
-fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
+pub fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
     assert!(!v.is_empty());
 
     for k in i..j - 1 {
@@ -78,7 +78,7 @@ fn shift_left(v: &mut Vec<i32>, i: usize, j: usize) {
 
 use rand::{thread_rng, Rng};
 
-fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
+pub fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
     let mut v = Vec::with_capacity(size);
     let mut rng = thread_rng();
     for i in 0..size {
@@ -87,7 +87,7 @@ fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
     v
 }
 
-fn copy_array(v: &Vec<i32>) -> Vec<i32> {
+pub fn copy_array(v: &Vec<i32>) -> Vec<i32> {
     let mut a = Vec::with_capacity(v.len());
     for elem in v {
         a.push(*elem);
@@ -95,7 +95,7 @@ fn copy_array(v: &Vec<i32>) -> Vec<i32> {
     a
 }
 
-fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+pub fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     for i in 0..v.len() {
         if v[i] == value {
             return Some(i);
@@ -104,7 +104,7 @@ fn find_in_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     None
 }
 
-fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+pub fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     let mut left = 0;
     let mut right = v.len();
     while left < right {
@@ -122,7 +122,7 @@ fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     None
 }
 
-fn find_first_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+pub fn find_first_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     let mut left = 0;
     let mut right = v.len();
     while left < right {
@@ -148,7 +148,7 @@ fn find_first_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     None
 }
 
-fn find_last_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+pub fn find_last_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     let mut left = 0;
     let mut right = v.len();
     while left < right {
