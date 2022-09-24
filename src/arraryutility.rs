@@ -110,7 +110,7 @@ fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     while left < right {
         let mid = (left + right) / 2;
         if v[mid] < value {
-            assert!(left < mid + 1); // 범위가 줄어들 것을 가정했다는 뜻 
+            assert!(left < mid + 1); // 범위가 줄어들 것을 가정했다는 뜻
             left = mid + 1;
         } else if v[mid] > value {
             assert!(right > mid); // 범위가 줄어들 것을 가정했다는 뜻
@@ -122,9 +122,50 @@ fn find_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
     None
 }
 
+fn find_first_in_sorted_array(v: &Vec<i32>, value: i32) -> Option<usize> {
+    let mut left = 0;
+    let mut right = v.len();
+    while left < right {
+        let mid = (left + right) / 2;
+        if v[mid] < value {
+            // 답은 오른쪽 영역에 있다.
+            assert!(left < mid + 1); // 범위가 줄어들 것을 가정했다는 뜻
+            left = mid + 1;
+        } else if v[mid] > value {
+            // 답은 왼쪽 영역에 있다.
+            assert!(right > mid); // 범위가 줄어들 것을 가정했다는 뜻
+            right = mid;
+        } else {
+            if mid >= left + 1 && v[mid - 1] == value {
+                // 여전히 답은 왼쪽 영역에 있다는 의미다.
+                assert!(right > mid); // 범위가 줄어들 것을 가정했다는 뜻
+                right = mid;
+            } else {
+                return Some(mid);
+            }
+        }
+    }
+    None
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_find_fisrt_in_sorted_array() {
+        let a = vec![1,1,1,1];
+        assert_eq!(find_first_in_sorted_array(&a, 1), Some(0));
+        // let a = vec![1, 2, 2, 2, 2, 3, 4, 5];
+        // assert_eq!(find_first_in_sorted_array(&a, 2), Some(1));
+        // assert_eq!(find_first_in_sorted_array(&a, 6), None);
+        // let a = vec![1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        // assert_eq!(find_first_in_sorted_array(&a, 1), Some(0));
+        // assert_eq!(find_first_in_sorted_array(&a, 3), None);
+        // let a = vec![1];
+        // assert_eq!(find_first_in_sorted_array(&a, 1), Some(0));
+        // assert_eq!(find_first_in_sorted_array(&a, 2), None);
+    }
 
     #[test]
     fn test_find_in_sorted_array() {
