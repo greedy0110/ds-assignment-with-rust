@@ -1,15 +1,4 @@
-// fn findMax<T>(v: &Vec<T>, s_index: usize, e_index: usize) -> T
-// where
-//     T: Ord, Clone, Copy
-// {
-//     let mut max = &v[s_index];
-//     for value in &v[s_index..e_index] {
-//         if value > max {
-//             max = value;
-//         }
-//     }
-//     max
-// }
+// array가 아니고, Vec에 대한 동작들이다.
 
 fn findmax(v: &Vec<i32>, s_index: usize, e_index: usize) -> i32 {
     assert!(!v.is_empty());
@@ -98,9 +87,24 @@ fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
     v
 }
 
+fn copy_array(v: &Vec<i32>) -> Vec<i32> {
+    let mut a = Vec::with_capacity(v.len());
+    for elem in v {
+        a.push(*elem);
+    }
+    a
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_copy_array() {
+        let a = vec![1, 2, 3, 4, 5];
+        let b = copy_array(&a);
+        assert_eq!(a, b);
+    }
 
     #[test]
     fn test_create_random_array() {
