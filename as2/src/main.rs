@@ -8,7 +8,8 @@ use std::time::Instant;
 fn main() {
     bench_aoa(10);
     bench_aoa(100);
-    bench_aoa(100000);
+    bench_aoa(1000);
+    bench_aoa(10000);
 }
 
 fn bench_aoa(n: usize) {
