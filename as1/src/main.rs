@@ -1,5 +1,5 @@
-use std::time::Instant;
 use as1::{maxsort::*, arraryutility::create_random_array};
+use bench::bench;
 
 fn main() {
     bench_maxsort(10);
@@ -25,16 +25,4 @@ fn maxsort_shift_size(n: usize) {
 fn maxsort_swap_size(n: usize) {
     let mut v = create_random_array(n, i32::MIN, i32::MAX);
     max_sort_swap(&mut v);
-}
-
-fn bench<F>(test_name: &str, f: F)
-where
-    F: FnOnce(),
-{
-    let before = Instant::now();
-
-    f();
-
-    let elapsed = before.elapsed();
-    println!("{} Elapsed : {:.2?}", test_name, elapsed);
 }
