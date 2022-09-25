@@ -2,7 +2,6 @@ use as1::arraryutility::create_random_array_f64;
 use as2::arrayofaverage::array_of_average;
 use std::time::Instant;
 
-// TODO: as1 모듈 의존성 불러오고 random array 생성하는 코드 받아쓰기
 // TODO: bench 모듈 분리 (별도 PR)
 
 fn main() {
