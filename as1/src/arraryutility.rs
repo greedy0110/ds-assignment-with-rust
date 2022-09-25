@@ -82,7 +82,16 @@ use rand::{thread_rng, Rng};
 pub fn create_random_array(size: usize, min: i32, max: i32) -> Vec<i32> {
     let mut v = Vec::with_capacity(size);
     let mut rng = thread_rng();
-    for i in 0..size {
+    for _ in 0..size {
+        v.push(rng.gen_range(min..max));
+    }
+    v
+}
+
+pub fn create_random_array_f64(size: usize, min: f64, max: f64) -> Vec<f64> {
+    let mut v = Vec::with_capacity(size);
+    let mut rng = thread_rng();
+    for _ in 0..size {
         v.push(rng.gen_range(min..max));
     }
     v

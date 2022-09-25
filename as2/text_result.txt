@@ -1,0 +1,20 @@
+==========
+bench array of average start size = 10
+aoa Elapsed : 29.76µs
+bench array of average end
+==========
+==========
+bench array of average start size = 100
+aoa Elapsed : 71.62µs
+bench array of average end
+==========
+==========
+bench array of average start size = 1000
+aoa Elapsed : 5.10ms
+bench array of average end
+==========
+==========
+bench array of average start size = 10000
+aoa Elapsed : 551.66ms
+bench array of average end
+==========

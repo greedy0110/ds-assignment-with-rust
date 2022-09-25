@@ -1,0 +1,24 @@
+==========
+bench maxsort start size = 10
+shift Elapsed : 20.91µs
+swap Elapsed : 524.00ns
+bench maxsort end
+==========
+==========
+bench maxsort start size = 100
+shift Elapsed : 7.58µs
+swap Elapsed : 4.55µs
+bench maxsort end
+==========
+==========
+bench maxsort start size = 1000
+shift Elapsed : 534.81µs
+swap Elapsed : 306.87µs
+bench maxsort end
+==========
+==========
+bench maxsort start size = 10000
+shift Elapsed : 50.60ms
+swap Elapsed : 30.58ms
+bench maxsort end
+==========
