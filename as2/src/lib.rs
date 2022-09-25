@@ -1,3 +1,3 @@
-mod palindrome;
-mod maxascent;
-mod arrayofaverage;
+pub mod palindrome;
+pub mod maxascent;
+pub mod arrayofaverage;
